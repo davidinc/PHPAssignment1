@@ -1,76 +1,93 @@
 <?php
-    require('database.php');
+    require("database.php");
 
-    // Query all contacts from the database
-    $queryContacts = 'SELECT * FROM contacts ORDER BY lastName, firstName';
+    $queryContacts = "SELECT c.contactID, c.firstName, c.lastName, c.emailAddress, c.phoneNumber, c.dob, 
+        c.typeID, c.imageName, t.contactType FROM contacts c LEFT JOIN types t ON c.typeID = t.typeID";
+
     $statement = $db->prepare($queryContacts);
     $statement->execute();
     $contacts = $statement->fetchAll();
     $statement->closeCursor();
+
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
+
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>Contact Manager - Home</title>
-        <link rel="stylesheet" href="css/contact.css">
+        <link rel="stylesheet" type="text/css" href="css/contact.css" />
+
     </head>
+
     <body>
-        <header>
-            <h1>Contact Manager System</h1>
-        </header>
+
+        <?php include("header.php"); ?>
 
         <main>
-            <div class="section-header">
-                <h2>Contact List</h2>
-                <span class="badge"><?php echo count($contacts); ?> Contacts</span>
-            </div>
 
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email Address</th>
-                            <th>Phone</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php if (count($contacts) > 0): ?>
-                            <?php foreach ($contacts as $contact) : ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars($contact['contactID']); ?></td>
-                                    <td><?php echo htmlspecialchars($contact['firstName']); ?></td>
-                                    <td><?php echo htmlspecialchars($contact['lastName']); ?></td>
-                                    <td>
-                                        <a href="mailto:<?php echo htmlspecialchars($contact['emailAddress']); ?>">
-                                            <?php echo htmlspecialchars($contact['emailAddress']); ?>
-                                        </a>
-                                    </td>
-                                    <td><?php echo htmlspecialchars($contact['phone']); ?></td>
-                                    <td>
-                                        <span class="status-pill status-<?php echo strtolower(htmlspecialchars($contact['status'])); ?>">
-                                            <?php echo htmlspecialchars($contact['status']); ?>
-                                        </span>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr>
-                                <td colspan="6" class="empty-row">No contacts found in the database.</td>
-                            </tr>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
-            </div>
+            <h2>Contact List</h2>
+
+            <table>
+
+                <tr>
+
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email Address</th>
+                    <th>Phone Number</th>
+                    <th>Birth Date</th>
+                    <th>Contact Type</th>
+                    <th>Photo</th>
+                    <th>&nbsp;</th> <!-- for update -->
+                    <th>&nbsp;</th> <!-- for delete -->
+
+                </tr>
+
+                <?php foreach ($contacts as $contact): ?>
+
+                    <tr>
+                        <td><?php echo htmlspecialchars($contact['firstName']); ?></td>
+                        <td><?php echo htmlspecialchars($contact['lastName']); ?></td>
+                        <td><?php echo htmlspecialchars($contact['emailAddress']); ?></td>
+                        <td><?php echo htmlspecialchars($contact['phoneNumber']); ?></td>
+                        <td><?php echo htmlspecialchars($contact['dob']); ?></td>
+                        <td><?php echo htmlspecialchars($contact['contactType']); ?></td>
+
+                        <td>
+                            <img src="<?php echo htmlspecialchars('./images/' . $contact['imageName']); ?>"
+                                alt="<?php echo htmlspecialchars($contact['firstName'] . ' ' . $contact['lastName']); ?>" />
+
+                        </td>
+
+                        <td>
+                            <form action="update_contact_form.php" method="post">
+                                <input type="hidden" name="contact_id" value="<?php echo $contact['contactID']; ?>" />
+                                <input type="submit" value="Update" />
+                            </form>
+                        </td>
+
+                        <td>
+                            <form action="delete_contact.php" method="post">
+                                <input type="hidden" name="contact_id" value="<?php echo $contact['contactID']; ?>" />
+                                <input type="submit" value="Delete" />
+                            </form>
+                        </td>
+
+                    </tr>
+
+                <?php endforeach; ?>
+           
+            </table>
+
+            <p><a href="add_contact_form.php">Add Contact</a></p>
+
         </main>
 
-        <footer>
-            <p>&copy; <?php echo date("Y"); ?> Contact Manager System</p>
-        </footer>
+        <?php include("footer.php"); ?>
+        
     </body>
+
 </html>
