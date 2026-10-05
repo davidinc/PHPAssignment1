@@ -1,183 +1,69 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7fb;
-    color: #2d3748;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #F2F4F8;
+    margin: 0;
+    padding: 20px;
 }
-
-header {
-    background: linear-gradient(135deg, #1e3a8a, #2563eb);
-    color: #ffffff;
-    padding: 1.5rem 2rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-    max-width: 1000px;
-    margin: 0 auto;
-    font-size: 1.75rem;
-    font-weight: 600;
-}
-
 main {
-    max-width: 1000px;
-    width: 95%;
-    margin: 2rem auto;
-    flex: 1;
+    display: block;
+    width: 1050px;
+    margin: 0 auto;
+    padding: 1em;
+    background: white;
+    border: 2px solid navy;
 }
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.25rem;
+h1, h2, h3 {
+    text-align: center;
+    color: navy;
+    margin-top: 0;
 }
-
-.section-header h2 {
-    font-size: 1.4rem;
-    color: #1e293b;
-}
-
-.badge {
-    background-color: #dbeafe;
-    color: #1e40af;
-    padding: 0.3rem 0.85rem;
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.table-container {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    overflow-x: auto;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
-    text-align: left;
+    margin-bottom: 20px;
 }
-
-thead {
-    background-color: #f8fafc;
-    border-bottom: 2px solid #e2e8f0;
+th, td {
+    padding: 10px;
+    border: 1px solid #CCCCCC;
+    text-align: center;
+    vertical-align: middle;
 }
-
-th {
-    padding: 1rem;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #64748b;
+label {
+    width: 15em;
+    float: left;
+    padding-right: 2em;
+    padding-bottom: 1em;
 }
-
-td {
-    padding: 1rem;
-    border-bottom: 1px solid #f1f5f9;
-    font-size: 0.95rem;
+#data input, #data select {
+    float: left;
+    width: 25em;
+    margin-bottom: 1em;
 }
-
-tbody tr:hover {
-    background-color: #f8fafc;
+#buttons input, #buttons a {
+    float: left;
+    margin-right: 1em;
 }
-
-td a {
-    color: #2563eb;
+br {
+    clear: left;
+}
+.btn-primary {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: navy;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+.btn-secondary {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
     text-decoration: none;
 }
-
-td a:hover {
-    text-decoration: underline;
-}
-
-.status-pill {
-    display: inline-block;
-    padding: 0.2rem 0.65rem;
-    border-radius: 999px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.status-active {
-    background-color: #dcfce7;
-    color: #166534;
-}
-
-.status-pending {
-    background-color: #fef9c3;
-    color: #854d0e;
-}
-
-.status-inactive {
-    background-color: #f1f5f9;
-    color: #475569;
-}
-
-/* Error Page Styling */
-.error-card {
-    background-color: #ffffff;
-    border-left: 5px solid #dc2626;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-.error-card h2 {
-    color: #dc2626;
-    margin-bottom: 1rem;
-}
-
-.error-card p {
-    margin-bottom: 0.5rem;
-}
-
-.error-detail {
-    background-color: #fef2f2;
-    color: #991b1b;
-    padding: 1rem;
-    border-radius: 6px;
-    margin: 1.25rem 0;
-    font-family: monospace;
-}
-
-.btn {
-    display: inline-block;
-    margin-top: 0.75rem;
-    background-color: #2563eb;
-    color: #ffffff;
-    padding: 0.65rem 1.25rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
-}
-
-.btn:hover {
-    background-color: #1d4ed8;
-}
-
-.empty-row {
+.pagination-container {
     text-align: center;
-    color: #64748b;
-    padding: 2rem;
-}
-
-footer {
-    text-align: center;
-    padding: 1.5rem;
-    color: #64748b;
-    font-size: 0.9rem;
-    border-top: 1px solid #e2e8f0;
-    background-color: #ffffff;
+    margin-top: 20px;
 }
